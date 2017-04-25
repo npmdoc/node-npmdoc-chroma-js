@@ -784,7 +784,26 @@ if (classes != null) {
   }
   return chroma(xyz, mode).alpha(alpha / l);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+chroma.mix(&amp;#39;red&amp;#39;, &amp;#39;blue&amp;#39;, 0.5, &amp;#39;lab&amp;#39;);
+chroma.mix(&amp;#39;red&amp;#39;, &amp;#39;blue&amp;#39;, 0.5, &amp;#39;lch&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-average"&gt;chroma.average&lt;/h3&gt;
+&lt;h4 id="-colors-mode-rgb-"&gt;(colors, mode=&amp;#39;rgb&amp;#39;)&lt;/h4&gt;
+&lt;p&gt;Similar to &lt;code&gt;chroma.mix&lt;/code&gt;, but accepts more than two colors. Simple averaging of R,G,B
+ components and the alpha channel.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;colors = [&amp;#39;#ddd&amp;#39;, &amp;#39;yellow&amp;#39;, &amp;#
+39;red&amp;#39;, &amp;#39;teal&amp;#39;];
+chroma.<span class="apidocCodeKeywordSpan">average</span>(colors);
+chroma.average(colors, &amp;#39;lab&amp;#39;);
+chroma.average(colors, &amp;#39;lch&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also works with alpha channels.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.average([&amp;#39;red&amp;#39;, &amp;#39;rgba(0,0,0,0.5)&amp;
+;#39;]).css();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-blend"&gt;chroma.blend&lt;/h3&gt;
+...</pre></li>
     </ul>
 
 
@@ -804,7 +823,27 @@ if (classes != null) {
   };
   return f;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-bezier"&gt;chroma.bezier&lt;/h3&gt;
+&lt;h4 id="-colors-"&gt;(colors)&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;chroma.bezier&lt;/code&gt; returns a function that &lt;a href="https://www.vis4.net/blog
+/posts/mastering-multi-hued-color-scales/"&gt;bezier-interpolates between colors&lt;/a&gt; in &lt;code&gt;Lab&lt;
+;/code&gt; space. The input range of the function is &lt;code&gt;[0..1]&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;// linear interpolation
+chroma.scale([&amp;#39;yellow&amp;#39;, &amp;#39;red&amp;#39;, &amp;#39;black&amp;#39;]);
+// bezier interpolation
+chroma.<span class="apidocCodeKeywordSpan">bezier</span>([&amp;#39;yellow&amp;#39;, &amp;#39;red&amp;#39;, &amp;#39;black&amp;#
+x26;#39;]);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can convert an bezier interpolator into a chroma.scale instance&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.bezier([&amp;#39;yellow&amp;#39;, &amp;#39;red&amp;#39;, &amp;
+;#39;black&amp;#39;])
+    .scale()
+    .colors(5);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="cubehelix"&gt;cubehelix&lt;/h2&gt;
+...</pre></li>
     </ul>
 
 
@@ -822,7 +861,28 @@ if (classes != null) {
   }
   return blend[mode](bottom, top);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also works with alpha channels.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.average([&amp;#39;red&amp;#39;, &amp;#39;rgba(0,0,0,0.5)&amp;
+;#39;]).css();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-blend"&gt;chroma.blend&lt;/h3&gt;
+&lt;h4 id="-color1-color2-mode-"&gt;(color1, color2, mode)&lt;/h4&gt;
+&lt;p&gt;Blends two colors using RGB channel-wise blend functions. Valid blend modes are &lt;code&gt;multiply&lt;/code
+&gt;, &lt;code&gt;darken&lt;/code&gt;, &lt;code&gt;lighten&lt;/code&gt;, &lt;code&gt;screen&lt;/code&gt;
+;, &lt;code&gt;overlay&lt;/code&gt;, &lt;code&gt;burn&lt;/code&gt;, and &lt;code&gt;dogde&lt;/code&gt;.&amp;#
+x3c;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">blend</span>(&amp;#39;4CBBFC
+&amp;#39;, &amp;#39;EEEE22&amp;#39;, &amp;#39;multiply&amp;#39;);
+chroma.blend(&amp;#39;4CBBFC&amp;#39;, &amp;#39;EEEE22&amp;#39;, &amp;#39;darken&amp;#39;);
+chroma.blend(&amp;#39;4CBBFC&amp;#39;, &amp;#39;EEEE22&amp;#39;, &amp;#39;lighten&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-random"&gt;chroma.random&lt;/h3&gt;
+&lt;h4 id="-"&gt;()&lt;/h4&gt;
+&lt;p&gt;Returns a random color.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.random();
+...</pre></li>
     </ul>
 
 
@@ -841,7 +901,25 @@ if (classes != null) {
     return Object(result) === result ? result : child;
   })(Color, slice.call(arguments).concat(['cmyk']), function(){});
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;p&gt;You can use &lt;strong&gt;hcl&lt;/strong&gt; instead of Lch. Lightness and hue channels are switched to be
+more consistent with HSL.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.hcl(130, 40, 80);
+chroma(130, 40, 80, &amp;#39;hcl&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-cmyk"&gt;chroma.cmyk&lt;/h3&gt;
+&lt;h4 id="-cyan-magenta-yellow-black-"&gt;(cyan, magenta, yellow, black)&lt;/h4&gt;
+&lt;p&gt;Each between 0 and 1.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">cmyk</span>(0.2, 0.8, 0, 0);
+chroma(0.2, 0.8, 0, 0, &amp;#39;cmyk&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-gl"&gt;chroma.gl&lt;/h3&gt;
+&lt;h4 id="-red-green-blue-alpha-"&gt;(red, green, blue, [alpha])&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;GL&lt;/strong&gt; is a variant of RGB(A), with the only difference that the components are normalized
+ to the range of &lt;code&gt;0..1&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.gl(0.6, 0, 0.8);
+chroma.gl(0.6, 0, 0.8, 0.5);
+...</pre></li>
     </ul>
 
 
@@ -869,7 +947,28 @@ if (classes != null) {
     return (l2 + 0.05) / (l1 + 0.05);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+chroma.random();
+chroma.random();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-contrast"&gt;chroma.contrast&lt;/h3&gt;
+&lt;h4 id="-color1-color2-"&gt;(color1, color2)&lt;/h4&gt;
+&lt;p&gt;Computes the WCAG contrast ratio between two colors. A minimum contrast of 4.5:1 &lt;a href="http://www.w3.org
+/TR/WCAG20-TECHS/G18.html"&gt;is recommended&lt;/a&gt; to ensure that text is still readable against a background color
+.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;// contrast smaller than 4.5 = too low
+chroma.<span class="apidocCodeKeywordSpan">contrast</span>(&amp;#39;pink&amp;#39;, &amp;#39;hotpink&amp;#39;);
+// contrast greater than 4.5 = high enough
+chroma.contrast(&amp;#39;pink&amp;#39;, &amp;#39;purple&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-distance"&gt;chroma.distance&lt;/h3&gt;
+&lt;h4 id="-color1-color2-mode-lab-"&gt;(color1, color2, mode=&amp;#39;lab&amp;#39;)&lt;/h4&gt;
+&lt;p&gt;Computes the &lt;a href="https://en.wikipedia.org/wiki/Euclidean_distance#Three_dimensions"&gt;eucledian
+ distance&lt;/a&gt; between two colors in a given color space (default is &lt;code&gt;Lab&lt;/code&gt;). &lt;/p&gt;
+;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.distance(&amp;#39;#fff&amp;#39;, &amp;#39;#ff0&amp;#39;, &amp;
+;#39;rgb&amp;#39;);
+...</pre></li>
     </ul>
 
 
@@ -1008,7 +1107,25 @@ rgb2hex = function(channels, mode) {
   f.hue(hue);
   return f;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    .colors(5);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="cubehelix"&gt;cubehelix&lt;/h2&gt;
+&lt;h3 id="chroma-cubehelix"&gt;chroma.cubehelix&lt;/h3&gt;
+&lt;h4 id="-start-300-rotations-1-5-hue-1-gamma-1-lightness-0-1-"&gt;(start=300, rotations=-1.5, hue=1, gamma=1, lightness
+=[0,1])&lt;/h4&gt;
+&lt;p&gt;Dave Green&amp;#39;s &lt;a href="http://www.mrao.cam.ac.uk/~dag/CUBEHELIX/"&gt;cubehelix color scheme
+&lt;/a&gt;!!&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;// use the default helix...
+chroma.<span class="apidocCodeKeywordSpan">cubehelix</span>();
+// or customize it
+chroma.cubehelix()
+    .start(200)
+    .rotations(-0.5)
+    .gamma(0.8)
+    .lightness([0.3, 0.8]);
+&lt;/code&gt;&lt;/pre&gt;
+...</pre></li>
     </ul>
 
 
@@ -1062,7 +1179,29 @@ rgb2hex = function(channels, mode) {
   v3 = sh;
   return sqrt(v1 * v1 + v2 * v2 + (dH2 / (v3 * v3)));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+chroma.distance(&amp;#39;#fff&amp;#39;, &amp;#39;#f0f&amp;#39;, &amp;#39;rgb&amp;#39;);
+chroma.distance(&amp;#39;#fff&amp;#39;, &amp;#39;#ff0&amp;#39;);
+chroma.distance(&amp;#39;#fff&amp;#39;, &amp;#39;#f0f&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-deltae"&gt;chroma.deltaE&lt;/h3&gt;
+&lt;h4 id="-reference-sample-l-1-c-1-"&gt;(reference, sample, L=1, C=1)&lt;/h4&gt;
+&lt;p&gt;Computes &lt;a href="https://en.wikipedia.org/wiki/Color_difference#CMC_l:c_.281984.29"&gt;color difference
+&lt;/a&gt; as developed by the Colour Measurement Committee of the Society of Dyers and Colourists (CMC) in 1984. The implementation
+ is adapted from &lt;a href="https://web.archive.org/web/20160306044036/http://www.brucelindbloom.com/javascript/ColorDiff
+.js"&gt;Bruce Lindbloom&lt;/a&gt;. The parameters L and C are weighting factors for lightness and chromacity.&lt;/p
+&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">deltaE</span>(&amp;#39;#ededee
+&amp;#39;, &amp;#39;#edeeed&amp;#39;);
+chroma.deltaE(&amp;#39;#ececee&amp;#39;, &amp;#39;#eceeec&amp;#39;);
+chroma.deltaE(&amp;#39;#e9e9ee&amp;#39;, &amp;#39;#e9eee9&amp;#39;);
+chroma.deltaE(&amp;#39;#e4e4ee&amp;#39;, &amp;#39;#e4eee4&amp;#39;);
+chroma.deltaE(&amp;#39;#e0e0ee&amp;#39;, &amp;#39;#e0eee0&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-brewer"&gt;chroma.brewer&lt;/h3&gt;
+&lt;p&gt;chroma.brewer is an map of ColorBrewer scales that are included in chroma.js for convenience. chroma.scale uses the
+ colors to construct.&lt;/p&gt;
+...</pre></li>
     </ul>
 
 
@@ -1094,7 +1233,30 @@ rgb2hex = function(channels, mode) {
   }
   return Math.sqrt(sum_sq);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+chroma.contrast(&amp;#39;pink&amp;#39;, &amp;#39;hotpink&amp;#39;);
+// contrast greater than 4.5 = high enough
+chroma.contrast(&amp;#39;pink&amp;#39;, &amp;#39;purple&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-distance"&gt;chroma.distance&lt;/h3&gt;
+&lt;h4 id="-color1-color2-mode-lab-"&gt;(color1, color2, mode=&amp;#39;lab&amp;#39;)&lt;/h4&gt;
+&lt;p&gt;Computes the &lt;a href="https://en.wikipedia.org/wiki/Euclidean_distance#Three_dimensions"&gt;eucledian
+ distance&lt;/a&gt; between two colors in a given color space (default is &lt;code&gt;Lab&lt;/code&gt;). &lt;/p&gt;
+;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">distance</span>(&amp;#39;#fff
+&amp;#39;, &amp;#39;#ff0&amp;#39;, &amp;#39;rgb&amp;#39;);
+chroma.distance(&amp;#39;#fff&amp;#39;, &amp;#39;#f0f&amp;#39;, &amp;#39;rgb&amp;#39;);
+chroma.distance(&amp;#39;#fff&amp;#39;, &amp;#39;#ff0&amp;#39;);
+chroma.distance(&amp;#39;#fff&amp;#39;, &amp;#39;#f0f&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-deltae"&gt;chroma.deltaE&lt;/h3&gt;
+&lt;h4 id="-reference-sample-l-1-c-1-"&gt;(reference, sample, L=1, C=1)&lt;/h4&gt;
+&lt;p&gt;Computes &lt;a href="https://en.wikipedia.org/wiki/Color_difference#CMC_l:c_.281984.29"&gt;color difference
+&lt;/a&gt; as developed by the Colour Measurement Committee of the Society of Dyers and Colourists (CMC) in 1984. The implementation
+ is adapted from &lt;a href="https://web.archive.org/web/20160306044036/http://www.brucelindbloom.com/javascript/ColorDiff
+.js"&gt;Bruce Lindbloom&lt;/a&gt;. The parameters L and C are weighting factors for lightness and chromacity.&lt;/p
+&gt;
+...</pre></li>
     </ul>
 
 
@@ -1113,7 +1275,26 @@ rgb2hex = function(channels, mode) {
     return Object(result) === result ? result : child;
   })(Color, slice.call(arguments).concat(['gl']), function(){});
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;p&gt;Each between 0 and 1.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.cmyk(0.2, 0.8, 0, 0);
+chroma(0.2, 0.8, 0, 0, &amp;#39;cmyk&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-gl"&gt;chroma.gl&lt;/h3&gt;
+&lt;h4 id="-red-green-blue-alpha-"&gt;(red, green, blue, [alpha])&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;GL&lt;/strong&gt; is a variant of RGB(A), with the only difference that the components are normalized
+ to the range of &lt;code&gt;0..1&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">gl</span>(0.6, 0, 0.8);
+chroma.gl(0.6, 0, 0.8, 0.5);
+chroma(0.6, 0, 0.8, &amp;#39;gl&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-temperature"&gt;chroma.temperature&lt;/h3&gt;
+&lt;h4 id="-k-"&gt;(K)&lt;/h4&gt;
+&lt;p&gt;Returns a color from the &lt;a href="http://www.zombieprototypes.com/?p=210"&gt;color temperature&lt;
+;/a&gt; scale. Based on &lt;a href="https://github.com/neilbartlett/color-temperature"&gt;Neil Bartlett&amp;#39
+;s implementation&lt;/a&gt;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.temperature(2000); // candle light
+...</pre></li>
     </ul>
 
 
@@ -1399,7 +1580,23 @@ if (m === 'hsl') {
     return Object(result) === result ? result : child;
   })(Color, slice.call(arguments).concat(['temperature']), function(){});
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+vows
+    .describe('Testing color temperature')
+
+    .addBatch
+
+'generate colors by temperatures':
+    topic: [4000,5000,10000,20000,30000,1000]
+    '1k': (t) -&gt; assert.equal chroma.<span class="apidocCodeKeywordSpan">kelvin</span>(t[5]).hex(), '#ff3a00
+'
+    '4k': (t) -&gt; assert.equal chroma.kelvin(t[0]).hex(), '#ffd0a4'
+    '5k': (t) -&gt; assert.equal chroma.kelvin(t[1]).hex(), '#ffe4cd'
+    '7k': (t) -&gt; assert.equal chroma.kelvin(t[1]).hex(), '#ffe4cd'
+    '10k': (t) -&gt; assert.equal chroma.kelvin(t[2]).hex(), '#ccdcff'
+    '20k': (t) -&gt; assert.equal chroma.kelvin(t[3]).hex(), '#a8c5ff'
+    '30k': (t) -&gt; assert.equal chroma.kelvin(t[4]).hex(), '#9fbeff'
+...</pre></li>
     </ul>
 
 
@@ -1657,7 +1854,26 @@ chroma.scale = function(colors, positions) {
   }
   return res.alpha(col1.alpha() + f * (col2.alpha() - col1.alpha()));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;pre&gt;&lt;code class="lang-js"&gt;f = function(i) {
+    return chroma.temperature(i * 30000)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-mix"&gt;chroma.mix&lt;/h3&gt;
+&lt;h4 id="-color1-color2-ratio-0-5-mode-rgb-"&gt;(color1, color2, ratio=0.5, mode=&amp;#39;rgb&amp;#39;)&lt;/
+h4&gt;
+&lt;p&gt;Mixes two colors. The mix &lt;em&gt;ratio&lt;/em&gt; is a value between 0 and 1.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">mix</span>(&amp;#39;red&amp;
+;#39;, &amp;#39;blue&amp;#39;);
+chroma.mix(&amp;#39;red&amp;#39;, &amp;#39;blue&amp;#39;, 0.25);
+chroma.mix(&amp;#39;red&amp;#39;, &amp;#39;blue&amp;#39;, 0.75);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The color mixing produces different results based the color space used for interpolation.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.mix(&amp;#39;red&amp;#39;, &amp;#39;blue&amp;#39;, 0.5, &amp;
+;#39;rgb&amp;#39;);
+chroma.mix(&amp;#39;red&amp;#39;, &amp;#39;blue&amp;#39;, 0.5, &amp;#39;hsl&amp;#39;);
+chroma.mix(&amp;#39;red&amp;#39;, &amp;#39;blue&amp;#39;, 0.5, &amp;#39;lab&amp;#39;);
+...</pre></li>
     </ul>
 
 
@@ -1918,21 +2134,20 @@ Color.prototype.darken = function(amount) {
         _domain = [classes[0], classes[classes.length - 1]];
       } else { ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  return I;
-};
+# 1.0.2
 
-chroma.bezier = function(colors) {
-  var f;
-  f = bezier(colors);
-  f.scale = function() {
-    return chroma.<span class="apidocCodeKeywordSpan">scale</span>(f);
-  };
-  return f;
-};
+* standardized alpha channel construction
+* chroma.bezier automatically returns chroma.scale
 
+# 1.0.1
 
-/*
-    chroma.js
+* added simple color output to chroma.<span class="apidocCodeKeywordSpan">scale</span>().colors()
+
+# 1.0.0
+
+* numeric interpolation does what it should
+* refactored and modularized code base
+* changed argument order of Color::interpolate
 ...</pre></li>
     </ul>
 
@@ -1952,7 +2167,27 @@ chroma.bezier = function(colors) {
     return Object(result) === result ? result : child;
   })(Color, slice.call(arguments).concat(['temperature']), function(){});
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.gl(0.6, 0, 0.8);
+chroma.gl(0.6, 0, 0.8, 0.5);
+chroma(0.6, 0, 0.8, &amp;#39;gl&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-temperature"&gt;chroma.temperature&lt;/h3&gt;
+&lt;h4 id="-k-"&gt;(K)&lt;/h4&gt;
+&lt;p&gt;Returns a color from the &lt;a href="http://www.zombieprototypes.com/?p=210"&gt;color temperature&lt;
+;/a&gt; scale. Based on &lt;a href="https://github.com/neilbartlett/color-temperature"&gt;Neil Bartlett&amp;#39
+;s implementation&lt;/a&gt;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">temperature</span>(2000); //
+candle light
+chroma.temperature(3500); // sunset
+chroma.temperature(6500); // daylight
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The effective temperature range goes from &lt;code&gt;0&lt;/code&gt; to about &lt;code&gt;30000&lt;/code
+&gt; Kelvin,&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;f = function(i) {
+    return chroma.temperature(i * 30000)
+}
+...</pre></li>
     </ul>
 
 
@@ -2008,7 +2243,25 @@ chroma.bezier = function(colors) {
     <li>description and source-code<pre class="apidocCodePre">cmyk = function () {
   return cmyk2rgb(unpack(arguments));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;p&gt;You can use &lt;strong&gt;hcl&lt;/strong&gt; instead of Lch. Lightness and hue channels are switched to be
+more consistent with HSL.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.hcl(130, 40, 80);
+chroma(130, 40, 80, &amp;#39;hcl&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-cmyk"&gt;chroma.cmyk&lt;/h3&gt;
+&lt;h4 id="-cyan-magenta-yellow-black-"&gt;(cyan, magenta, yellow, black)&lt;/h4&gt;
+&lt;p&gt;Each between 0 and 1.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">cmyk</span>(0.2, 0.8, 0, 0);
+chroma(0.2, 0.8, 0, 0, &amp;#39;cmyk&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-gl"&gt;chroma.gl&lt;/h3&gt;
+&lt;h4 id="-red-green-blue-alpha-"&gt;(red, green, blue, [alpha])&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;GL&lt;/strong&gt; is a variant of RGB(A), with the only difference that the components are normalized
+ to the range of &lt;code&gt;0..1&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.gl(0.6, 0, 0.8);
+chroma.gl(0.6, 0, 0.8, 0.5);
+...</pre></li>
     </ul>
 
 
@@ -2068,7 +2321,26 @@ rgb2hex = function(channels, mode) {
   }
   return rgb;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;p&gt;Each between 0 and 1.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.cmyk(0.2, 0.8, 0, 0);
+chroma(0.2, 0.8, 0, 0, &amp;#39;cmyk&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-gl"&gt;chroma.gl&lt;/h3&gt;
+&lt;h4 id="-red-green-blue-alpha-"&gt;(red, green, blue, [alpha])&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;GL&lt;/strong&gt; is a variant of RGB(A), with the only difference that the components are normalized
+ to the range of &lt;code&gt;0..1&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">gl</span>(0.6, 0, 0.8);
+chroma.gl(0.6, 0, 0.8, 0.5);
+chroma(0.6, 0, 0.8, &amp;#39;gl&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-temperature"&gt;chroma.temperature&lt;/h3&gt;
+&lt;h4 id="-k-"&gt;(K)&lt;/h4&gt;
+&lt;p&gt;Returns a color from the &lt;a href="http://www.zombieprototypes.com/?p=210"&gt;color temperature&lt;
+;/a&gt; scale. Based on &lt;a href="https://github.com/neilbartlett/color-temperature"&gt;Neil Bartlett&amp;#39
+;s implementation&lt;/a&gt;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.temperature(2000); // candle light
+...</pre></li>
     </ul>
 
 
@@ -2435,7 +2707,23 @@ if (m === 'hsl') {
   }
   return [r, g, b];
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+vows
+    .describe('Testing color temperature')
+
+    .addBatch
+
+'generate colors by temperatures':
+    topic: [4000,5000,10000,20000,30000,1000]
+    '1k': (t) -&gt; assert.equal chroma.<span class="apidocCodeKeywordSpan">kelvin</span>(t[5]).hex(), '#ff3a00
+'
+    '4k': (t) -&gt; assert.equal chroma.kelvin(t[0]).hex(), '#ffd0a4'
+    '5k': (t) -&gt; assert.equal chroma.kelvin(t[1]).hex(), '#ffe4cd'
+    '7k': (t) -&gt; assert.equal chroma.kelvin(t[1]).hex(), '#ffe4cd'
+    '10k': (t) -&gt; assert.equal chroma.kelvin(t[2]).hex(), '#ccdcff'
+    '20k': (t) -&gt; assert.equal chroma.kelvin(t[3]).hex(), '#a8c5ff'
+    '30k': (t) -&gt; assert.equal chroma.kelvin(t[4]).hex(), '#9fbeff'
+...</pre></li>
     </ul>
 
 
@@ -2631,7 +2919,27 @@ Color.prototype.darken = function(amount) {
   }
   return [r, g, b];
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.gl(0.6, 0, 0.8);
+chroma.gl(0.6, 0, 0.8, 0.5);
+chroma(0.6, 0, 0.8, &amp;#39;gl&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-temperature"&gt;chroma.temperature&lt;/h3&gt;
+&lt;h4 id="-k-"&gt;(K)&lt;/h4&gt;
+&lt;p&gt;Returns a color from the &lt;a href="http://www.zombieprototypes.com/?p=210"&gt;color temperature&lt;
+;/a&gt; scale. Based on &lt;a href="https://github.com/neilbartlett/color-temperature"&gt;Neil Bartlett&amp;#39
+;s implementation&lt;/a&gt;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">temperature</span>(2000); //
+candle light
+chroma.temperature(3500); // sunset
+chroma.temperature(6500); // daylight
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The effective temperature range goes from &lt;code&gt;0&lt;/code&gt; to about &lt;code&gt;30000&lt;/code
+&gt; Kelvin,&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;f = function(i) {
+    return chroma.temperature(i * 30000)
+}
+...</pre></li>
     </ul>
 
 
@@ -2654,7 +2962,28 @@ Color.prototype.darken = function(amount) {
   }
   return blend[mode](bottom, top);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also works with alpha channels.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.average([&amp;#39;red&amp;#39;, &amp;#39;rgba(0,0,0,0.5)&amp;
+;#39;]).css();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-blend"&gt;chroma.blend&lt;/h3&gt;
+&lt;h4 id="-color1-color2-mode-"&gt;(color1, color2, mode)&lt;/h4&gt;
+&lt;p&gt;Blends two colors using RGB channel-wise blend functions. Valid blend modes are &lt;code&gt;multiply&lt;/code
+&gt;, &lt;code&gt;darken&lt;/code&gt;, &lt;code&gt;lighten&lt;/code&gt;, &lt;code&gt;screen&lt;/code&gt;
+;, &lt;code&gt;overlay&lt;/code&gt;, &lt;code&gt;burn&lt;/code&gt;, and &lt;code&gt;dogde&lt;/code&gt;.&amp;#
+x3c;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.<span class="apidocCodeKeywordSpan">blend</span>(&amp;#39;4CBBFC
+&amp;#39;, &amp;#39;EEEE22&amp;#39;, &amp;#39;multiply&amp;#39;);
+chroma.blend(&amp;#39;4CBBFC&amp;#39;, &amp;#39;EEEE22&amp;#39;, &amp;#39;darken&amp;#39;);
+chroma.blend(&amp;#39;4CBBFC&amp;#39;, &amp;#39;EEEE22&amp;#39;, &amp;#39;lighten&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="chroma-random"&gt;chroma.random&lt;/h3&gt;
+&lt;h4 id="-"&gt;()&lt;/h4&gt;
+&lt;p&gt;Returns a random color.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-js"&gt;chroma.random();
+...</pre></li>
     </ul>
 
 
