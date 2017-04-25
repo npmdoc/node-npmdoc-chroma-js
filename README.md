@@ -1,6 +1,6 @@
 # npmdoc-chroma-js
 
-#### api documentation for  [chroma-js (v1.3.3)](https://github.com/gka/chroma.js)  [![npm package](https://img.shields.io/npm/v/npmdoc-chroma-js.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-chroma-js) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-chroma-js.svg)](https://travis-ci.org/npmdoc/node-npmdoc-chroma-js)
+#### basic api documentation for  [chroma-js (v1.3.3)](https://github.com/gka/chroma.js)  [![npm package](https://img.shields.io/npm/v/npmdoc-chroma-js.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-chroma-js) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-chroma-js.svg)](https://travis-ci.org/npmdoc/node-npmdoc-chroma-js)
 
 #### JavaScript library for color conversions
 
@@ -80,7 +80,8 @@
             "test"
         ]
     },
-    "version": "1.3.3"
+    "version": "1.3.3",
+    "bin": {}
 }
 ```
 
